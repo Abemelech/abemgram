@@ -12,41 +12,8 @@
 </head>
 <body style="background-color: #292e4e;">
     <div class="container-fluid" style="color: white; background-size: cover;">
-        <!--Holds all the columns and rows-->
-        <div class="row">
-
-            <!--Holds the left side panel that includes list of names and search-->
-            <div class="col-6 col-sm-6 col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
-
-                <!--Holds the short bar of profile and search-->
-                <div class="row">
-                    <div class="col-4 col-sm-4 col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">Profile</div>
-                    <div class="col-8 col-sm-8 col-md-6 col-lg-7 col-xl-8 mb-4 mb-md-0">Search</div>
-                </div>
-                <!--Holds the list of names talked before-->
-                <div class="row">
-                    All the different names
-                </div>
-            </div>
-
-            <!--Holds the right side panel which holds the message and other details-->
-            <div class="col-6 col-sm-6 col-md-6 col-lg-7 col-xl-8">
-                <!--Holds the name of the person's conversation-->
-                <div class="row">
-                    Name of specific person and info
-                </div>
-                <!--Holds the chat box-->
-                <div class="row">
-                    Chat box
-                </div>
-                <!--Holds entry location of the message-->
-                <div class="row">
-                    Messege box
-                </div>
-
-            </div>
-        </div>
-        
+        {% block content %}
+        {% endblock %}
     </div>
 
 
