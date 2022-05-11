@@ -1,0 +1,11 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-success" type="submit">Register</button>
+        </form>
+    </div>
+{% endblock %}
