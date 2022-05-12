@@ -1,4 +1,3 @@
-from re import L
 from django.shortcuts import redirect, render
 from .forms import RegisterForm
 
@@ -8,7 +7,7 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("/login")
 
     else:
         form = RegisterForm()
