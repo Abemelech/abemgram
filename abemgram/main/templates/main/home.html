@@ -16,7 +16,7 @@
             <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 mb-4 mb-md-0">
                 <form  method="POST" class="d-flex">
                     {% csrf_token %}
-                    <input type="search" class="form-control me-2" aria-label="Search" placeholder="Search Number" name="search_name">
+                    <input type="search" class="form-control me-2" aria-label="Search Number" placeholder="Search Number" name="search_number">
                     <button class="btn btn-outline-secondary" type="submit">Search</button>
                 </form>
             </div>
@@ -24,6 +24,11 @@
         <!--Holds the list of names talked before-->
         <div class="row">
             All the different names
+            {% if search %}
+                Hello {{ search }}
+            {% else %}
+                <p>Nothing</p>
+            {% endif %}
         </div>
     </div>
 
