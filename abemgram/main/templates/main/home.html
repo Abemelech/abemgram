@@ -10,11 +10,15 @@
 
         <!--Holds the short bar of profile and search-->
         <div class="row">
-            <div class="col-4 col-sm-4 col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
-                Profile
+            <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 mb-4 mb-md-0">
+                Abemelech
             </div>
-            <div class="col-8 col-sm-8 col-md-6 col-lg-7 col-xl-8 mb-4 mb-md-0">
-                Search
+            <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 mb-4 mb-md-0">
+                <form  method="POST" class="d-flex">
+                    {% csrf_token %}
+                    <input type="search" class="form-control me-2" aria-label="Search" placeholder="Search Number" name="search_name">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </form>
             </div>
         </div>
         <!--Holds the list of names talked before-->
