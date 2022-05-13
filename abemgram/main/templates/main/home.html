@@ -6,7 +6,7 @@
 <div class="row">
 
     <!--Holds the left side panel that includes list of names and search-->
-    <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mb-md-0">
+    <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
 
         <!--Holds the short bar of profile and search-->
         <div class="row">
@@ -25,7 +25,7 @@
         <div class="row">
             All the different names
             {% if search %}
-                Hello {{ search }}
+                Hello {{ search }} {{ users }}
             {% else %}
                 <p>Nothing</p>
             {% endif %}
