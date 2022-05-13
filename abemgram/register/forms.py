@@ -1,9 +1,9 @@
 from django import forms
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from main.models import Customer
 
-class RegisterForm(UserCreationForm):
+class UserCreateForm(UserCreationForm):
     phone = forms.CharField(required=True)
 
     class Meta:
@@ -11,7 +11,7 @@ class RegisterForm(UserCreationForm):
         fields = ("username", "phone", "password1", "password2")
 
     def save(self, commit=True):
-        user = super(RegisterForm, self).save(commit=False)
+        user = super(UserCreateForm, self).save(commit=False)
         user.phone = self.cleaned_data["phone"]
         if commit:
             user.save()
