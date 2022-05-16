@@ -1,5 +1,10 @@
 {% extends 'main/index.html' %}
 
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style_bubble.css'%}">
+
+{% endblock %}
 
 {% block content %}
 <!--Holds all the columns and rows-->
@@ -37,6 +42,7 @@
                 {% if chats  %}
                     <p class="mt-2">Searched: {{ search }}</p>
                     {% for chats in chats %}
+                        
                         <p class="mt-1"><a href="/{{chats.phone}}">{{ chats.user }}</a></p>
                     {% endfor %}
                 {% else %}
@@ -51,7 +57,27 @@
             <div class="row">
                 {% for message in chat_user.message_reciever.all %}
                     {% if message.user == user %}
-                        <p class="message me-message">{{ message.message_text }}</p>
+                        <!--Print out the chat after checking the correct users-->
+                        <!--<p class="message me-message">{{ message.message_text }}</p>-->
+                        <div class="speech-wrapper">
+                            <div class="bubble">
+                              <div class="txt">
+                                <p class="name">Benni</p>
+                                <p class="message">Hey, check out this Pure CSS speech bubble...</p>
+                                <span class="timestamp">10:20 pm</span>
+                              </div>
+                              <div class="bubble-arrow"></div>
+                            </div>
+                            <!--  Speech Bubble alternative -->
+                            <div class="bubble alt">
+                              <div class="txt">
+                                <p class="name alt">+353 87 1234 567<span> ~ John</span></p>
+                                <p class="message">Nice... this will work great for my new project.</p>
+                                <span class="timestamp">10:22 pm</span>
+                              </div>
+                              <div class="bubble-arrow alt"></div>
+                            </div>
+                          </div>
                     {% endif %}
                 {% endfor %}
             </div>
