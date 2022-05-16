@@ -56,8 +56,21 @@
             <!--Holds the chat box-->
             <div class="row">
                 <!--Sent Messages-->
-                {% for message in chat_user.message_reciever.all %}
-                    {% if message.user == user %}
+                {% for message in messages %}
+                    {% if message.user == chat_user %}
+                        <!--Print out the chat after checking the correct users-->
+                        <!--<p class="message me-message">{{ message.message_text }}</p>-->
+                        <div class="speech-wrapper">
+                            <div class="bubble">
+                              <div class="txt">
+                                <p class="name">{{chat_user.username}}</p>
+                                <p class="message">{{ message.message_text }}</p>
+                                <p><span class="timestamp">{{message.timestamp}}</span></p>
+                              </div>
+                              <div class="bubble-arrow"></div>
+                            </div>
+                        </div> 
+                    {% elif message.user == user %}
                         <!--Print out the chat after checking the correct users-->
                         <!--<p class="message me-message">{{ message.message_text }}</p>-->
                         <div class="speech-wrapper">
@@ -71,24 +84,6 @@
                               <div class="bubble-arrow alt"></div>
                             </div>
                           </div>
-                    {% endif %}
-                {% endfor %}
-
-                <!--Recieved Messages-->
-                {% for message in chat_user.message_sender.all %}
-                    {% if message.sent_to == user %}
-                         <!--Print out the chat after checking the correct users-->
-                        <!--<p class="message me-message">{{ message.message_text }}</p>-->
-                        <div class="speech-wrapper">
-                            <div class="bubble">
-                              <div class="txt">
-                                <p class="name">{{chat_user.username}}</p>
-                                <p class="message">{{ message.message_text }}</p>
-                                <p><span class="timestamp">{{message.timestamp}}</span></p>
-                              </div>
-                              <div class="bubble-arrow"></div>
-                            </div>
-                        </div> 
                     {% endif %}
                 {% endfor %}
             </div>
