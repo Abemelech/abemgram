@@ -1,14 +1,18 @@
-from dataclasses import field
-from enum import unique
-from hashlib import blake2b
 from django import forms
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from main.models import Customer
 
-class RegisterForm(UserCreationForm):
-    phone = forms.CharField(max_length=10)
+class UserCreateForm(UserCreationForm):
+    phone = forms.CharField(required=True)
 
-    class Meta: 
+    class Meta:
         model = User
-        fields = ["username", "phone", "password1", "password2"]
+        fields = ("username", "phone", "password1", "password2")
+
+    def save(self, commit=True):
+        user = super(UserCreateForm, self).save(commit=False)
+        user.phone = self.cleaned_data["phone"]
+        if commit:
+            user.save()
+        return user
