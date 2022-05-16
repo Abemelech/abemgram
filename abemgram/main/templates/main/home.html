@@ -25,7 +25,7 @@
         <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
             <!--Holds the name of the person's conversation-->
             <div class="row">
-                <p class="mt-1">{{chat_user}} {{chat_number}}</p>
+                <p class="mt-1">{{chat_user.username }} {{chat_number}}</p>
             </div>
         </div>
     </div>
@@ -49,12 +49,16 @@
         <div class="col-6 col-sm-7 col-md-7 col-lg-7 col-xl-8">
             <!--Holds the chat box-->
             <div class="row">
-                Chat box
-                <p>{{ chat_user }}</p>
+                {% for message in chat_user.message_reciever.all %}
+                    {% if message.user == user %}
+                        <p class="message me-message">{{ message.message_text }}</p>
+                    {% endif %}
+                {% endfor %}
             </div>
             <!--Holds entry location of the message-->
             <div class="row">
                 Messege box
+
             </div>
 
         </div>
