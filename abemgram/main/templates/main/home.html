@@ -62,9 +62,9 @@
                         <div class="speech-wrapper">
                             <div class="bubble">
                               <div class="txt">
-                                <p class="name">Benni</p>
-                                <p class="message">Hey, check out this Pure CSS speech bubble...</p>
-                                <span class="timestamp">10:20 pm</span>
+                                <p class="name">{{chat_user.username}}</p>
+                                <p class="message">{{ message.message_text }}</p>
+                                <p><span class="timestamp">{{message.timestamp}}</span></p>
                               </div>
                               <div class="bubble-arrow"></div>
                             </div>
