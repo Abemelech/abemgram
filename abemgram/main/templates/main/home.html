@@ -55,9 +55,29 @@
         <div class="col-6 col-sm-7 col-md-7 col-lg-7 col-xl-8">
             <!--Holds the chat box-->
             <div class="row">
+                <!--Sent Messages-->
                 {% for message in chat_user.message_reciever.all %}
                     {% if message.user == user %}
                         <!--Print out the chat after checking the correct users-->
+                        <!--<p class="message me-message">{{ message.message_text }}</p>-->
+                        <div class="speech-wrapper">
+                            <!--  Speech Bubble alternative -->
+                            <div class="bubble alt">
+                              <div class="txt">
+                                <p class="name alt">{{user.username}}</p>
+                                <p class="message">{{ message.message_text }}</p>
+                                <span class="timestamp">{{message.timestamp}}</span>
+                              </div>
+                              <div class="bubble-arrow alt"></div>
+                            </div>
+                          </div>
+                    {% endif %}
+                {% endfor %}
+
+                <!--Recieved Messages-->
+                {% for message in chat_user.message_sender.all %}
+                    {% if message.sent_to == user %}
+                         <!--Print out the chat after checking the correct users-->
                         <!--<p class="message me-message">{{ message.message_text }}</p>-->
                         <div class="speech-wrapper">
                             <div class="bubble">
@@ -68,16 +88,7 @@
                               </div>
                               <div class="bubble-arrow"></div>
                             </div>
-                            <!--  Speech Bubble alternative -->
-                            <div class="bubble alt">
-                              <div class="txt">
-                                <p class="name alt">+353 87 1234 567<span> ~ John</span></p>
-                                <p class="message">Nice... this will work great for my new project.</p>
-                                <span class="timestamp">10:22 pm</span>
-                              </div>
-                              <div class="bubble-arrow alt"></div>
-                            </div>
-                          </div>
+                        </div> 
                     {% endif %}
                 {% endfor %}
             </div>
