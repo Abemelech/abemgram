@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 mb-4 mb-md-0">
                     {% if user.is_authenticated %}
-                    <p class="m-1">{{ user.username }}</p>
+                    <p class="m-2">{{ user.username }}</p>
                     {% endif %}
                 </div>
                 <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 mb-4 mb-md-0">
@@ -25,7 +25,7 @@
         <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
             <!--Holds the name of the person's conversation-->
             <div class="row">
-                Name of specific person and info
+                <p class="mt-1">{{chat_user}} {{chat_number}}</p>
             </div>
         </div>
     </div>
@@ -50,6 +50,7 @@
             <!--Holds the chat box-->
             <div class="row">
                 Chat box
+                <p>{{ chat_user }}</p>
             </div>
             <!--Holds entry location of the message-->
             <div class="row">
