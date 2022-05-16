@@ -7,10 +7,10 @@ def index(response):
     if response.method == "POST":
         
         search = response.POST.get('search_number')
-        users = Customer.objects.filter(phone = search)
+        chats = Customer.objects.filter(phone = search)
 
-        return render(response, 'main/home.html', {"users": users, "search": search})
+        return render(response, 'main/home.html', {"user": User, "chats": chats, "search": search})
     else:
-        return render(response, 'main/home.html', {})
+        return render(response, 'main/home.html', {"user": User})
 
     
