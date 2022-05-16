@@ -79,7 +79,7 @@
                               <div class="txt">
                                 <p class="name alt">{{user.username}}</p>
                                 <p class="message">{{ message.message_text }}</p>
-                                <span class="timestamp">{{message.timestamp}}</span>
+                                <p><span class="timestamp">{{message.timestamp}}</span></p>
                               </div>
                               <div class="bubble-arrow alt"></div>
                             </div>
@@ -89,8 +89,11 @@
             </div>
             <!--Holds entry location of the message-->
             <div class="row">
-                Messege box
-
+                <form  method="POST" class="d-flex">
+                    {% csrf_token %}
+                    <input type="text_message" class="form-control me-2" aria-label="Message" placeholder="Message" name="message_box">
+                    <button class="btn btn-success" type="submit">></button>
+                </form>
             </div>
 
         </div>
