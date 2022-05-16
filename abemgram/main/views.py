@@ -16,7 +16,7 @@ def index(response):
 
 def chat(response, number):
     # If chat has been selected a specific number
-    # Similar Search function
+    # Similar Search function in index
     if response.method == "POST":
         
         search = response.POST.get('search_number')
