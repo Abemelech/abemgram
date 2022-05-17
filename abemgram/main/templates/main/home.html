@@ -64,28 +64,32 @@
                             {% if message.user == user %}
                                 <!--Print out the chat after checking the correct users-->
                                 <!--<p class="message me-message">{{ message.message_text }}</p>-->
-                                <div class="speech-wrapper">
-                                    <!--  Speech Bubble alternative -->
-                                    <div class="bubble alt">
-                                    <div class="txt">
-                                        <p class="name alt">{{user.username}}</p>
-                                        <p class="message">{{ message.message_text }}</p>
-                                        <p><span class="timestamp">{{message.timestamp}}</span></p>
-                                    </div>
-                                    <div class="bubble-arrow alt"></div>
+                                <div class="d-flex justify-content-end">
+                                    <div class="speech-wrapper">
+                                        <!--  Speech Bubble alternative -->
+                                        <div class="bubble alt">
+                                        <div class="txt">
+                                            <p class="name alt">{{user.username}}</p>
+                                            <p class="message">{{ message.message_text }}</p>
+                                            <p><span class="timestamp">{{message.timestamp}}</span></p>
+                                        </div>
+                                        <div class="bubble-arrow alt"></div>
+                                        </div>
                                     </div>
                                 </div>
                             {% elif message.user == chat_user %}
                                 <!--Print out the chat after checking the correct users-->
                                 <!--<p class="message me-message">{{ message.message_text }}</p>-->
-                                <div class="speech-wrapper">
-                                    <div class="bubble">
-                                      <div class="txt">
-                                        <p class="name">{{chat_user.username}}</p>
-                                        <p class="message">{{ message.message_text }}</p>
-                                        <p><span class="timestamp">{{message.timestamp}}</span></p>
-                                      </div>
-                                      <div class="bubble-arrow"></div>
+                                <div class="d-flex justify-content-start">
+                                    <div class="speech-wrapper">
+                                        <div class="bubble">
+                                          <div class="txt">
+                                            <p class="name">{{chat_user.username}}</p>
+                                            <p class="message">{{ message.message_text }}</p>
+                                            <p><span class="timestamp">{{message.timestamp}}</span></p>
+                                          </div>
+                                          <div class="bubble-arrow"></div>
+                                        </div>
                                     </div>
                                 </div> 
                             {% endif %}

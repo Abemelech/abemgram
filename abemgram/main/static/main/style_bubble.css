@@ -3,7 +3,7 @@
   padding: 30px 40px;
 }
 .speech-wrapper .bubble {
-  width: 240px;
+  width: auto;
   height: auto;
   display: block;
   background: #5ab98e;
