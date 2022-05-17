@@ -1,63 +1,117 @@
 {% extends 'main/index.html' %}
 
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style_bubble.css'%}">
+
+{% endblock %}
 
 {% block content %}
 <!--Holds all the columns and rows-->
-<div class="row">
-    <div class="row">
-        <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
-            <!--Holds the short bar of profile and search-->
-            <div class="row">
-                <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 mb-4 mb-md-0">
-                    {% if user.is_authenticated %}
-                    <p class="m-1">{{ user.username }}</p>
+<div class="d-flex flex-column h-100">
+    <div class="p-2">
+        <div class="row">
+            <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
+                <!--Holds the short bar of profile and search-->
+                <div class="row">
+                    <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 mb-4 mb-md-0">
+                        {% if user.is_authenticated %}
+                        <p class="m-2">{{ user.username }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 mb-4 mb-md-0">
+                        <form  method="POST" class="d-flex">
+                            {% csrf_token %}
+                            <input type="search" class="form-control me-2" aria-label="Search Number" placeholder="Search Number" name="search_number">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
+                <!--Holds the name of the person's conversation-->
+                <div class="row">
+                    <p class="mt-1">{{chat_user.username }} {{chat_number}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-2 h-100">
+        <div class="row h-100">
+            <!--Holds the left side panel that includes list of names and search-->
+            <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
+                <!--Holds the list of names talked before-->
+                <div class="row">
+                    {% if chats  %}
+                        <p class="mt-2">Searched: {{ search }}</p>
+                        {% for chats in chats %}
+                            <button class="btn" onclick="window.location.href='/{{chats.phone}}'" style="background-color: #2c3151; color: #e1fef7; min-height: 50px;">{{ chats.user }}</button>
+                        {% endfor %}
+                    {% else %}
+                        {% if chat_number %}
+                        <button class="btn" onclick="window.location.href='/{{chat_number}}'" style="background-color: #2c3151; color: #e1fef7; min-height: 50px;">{{ chat_user }}</button>
+                        {% endif %}
                     {% endif %}
                 </div>
-                <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 mb-4 mb-md-0">
-                    <form  method="POST" class="d-flex">
-                        {% csrf_token %}
-                        <input type="search" class="form-control me-2" aria-label="Search Number" placeholder="Search Number" name="search_number">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
-                    </form>
+            </div>
+    
+            <!--Holds the right side panel which holds the message and other details-->
+            <div class="col-6 col-sm-7 col-md-7 col-lg-7 col-xl-8">
+                <!--Holds the chat box-->
+                <div class="d-flex flex-column h-100">
+                    <div class="row overflow-auto" style="height: 85vh;">
+                        <!--Sent Messages-->
+                        {% for message in messages %}
+                            {% if message.user == user %}
+                                <!--Print out the chat after checking the correct users-->
+                                <!--<p class="message me-message">{{ message.message_text }}</p>-->
+                                <div class="d-flex justify-content-end">
+                                    <div class="speech-wrapper">
+                                        <!--  Speech Bubble alternative -->
+                                        <div class="bubble alt">
+                                        <div class="txt">
+                                            <p class="name alt">{{user.username}}</p>
+                                            <p class="message">{{ message.message_text }}</p>
+                                            <p><span class="timestamp">{{message.timestamp}}</span></p>
+                                        </div>
+                                        <div class="bubble-arrow alt"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif message.user == chat_user %}
+                                <!--Print out the chat after checking the correct users-->
+                                <!--<p class="message me-message">{{ message.message_text }}</p>-->
+                                <div class="d-flex justify-content-start">
+                                    <div class="speech-wrapper">
+                                        <div class="bubble">
+                                          <div class="txt">
+                                            <p class="name">{{chat_user.username}}</p>
+                                            <p class="message">{{ message.message_text }}</p>
+                                            <p><span class="timestamp">{{message.timestamp}}</span></p>
+                                          </div>
+                                          <div class="bubble-arrow"></div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="row p-2">
+                        <form  method="POST" class="d-flex">
+                            {% csrf_token %}
+                            <input type="text_message" class="form-control me-2" aria-label="Message" placeholder="Message" name="message_box">
+                            <button class="btn btn-success" type="submit">></button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
-            <!--Holds the name of the person's conversation-->
-            <div class="row">
-                Name of specific person and info
+                
+                <!--Holds entry location of the message-->
+                
+    
             </div>
         </div>
     </div>
-    <div class="row">
-        <!--Holds the left side panel that includes list of names and search-->
-        <div class="col-6 col-sm-5 col-md-5 col-lg-5 col-xl-4 mb-4 mt-2 mb-md-0">
-            <!--Holds the list of names talked before-->
-            <div class="row">
-                {% if chats  %}
-                    <p class="mt-2">Searched: {{ search }}</p>
-                    {% for chats in chats %}
-                        <p class="mt-1"><a href="/{{chats.phone}}">{{ chats.user }}</a></p>
-                    {% endfor %}
-                {% else %}
-                    <p class="m-3">Nothing</p>
-                {% endif %}
-            </div>
-        </div>
-
-        <!--Holds the right side panel which holds the message and other details-->
-        <div class="col-6 col-sm-7 col-md-7 col-lg-7 col-xl-8">
-            <!--Holds the chat box-->
-            <div class="row">
-                Chat box
-            </div>
-            <!--Holds entry location of the message-->
-            <div class="row">
-                Messege box
-            </div>
-
-        </div>
-    </div>
+    
 </div>
 
 {% endblock %}
