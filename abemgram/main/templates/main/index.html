@@ -12,8 +12,24 @@
 </head>
 <body style="background-color: #272c49; height: 100%;">
     <div class="container-fluid" style="color: #e1fef7; height: 100%;">
-        {% block content %}
-        {% endblock %}
+        {% if user.is_authenticated %}
+            {% block content %}
+            {% endblock %}
+        {% else %}
+            {% block signin %}
+            <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                <div>
+                    <div class="row">
+                        <h1 class="text-center">User Not Logged In</h1>
+                    </div>
+                    <div class="row mt-1">
+                        <p class="text-center">Have an account? <a href="/login">Log in</a></p>
+                        <p class="text-center">Don't have an account? <a href="/register">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        {% endif %}
     </div>
 
 
