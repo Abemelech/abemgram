@@ -59,7 +59,7 @@
             <div class="col-6 col-sm-7 col-md-7 col-lg-7 col-xl-8">
                 <!--Holds the chat box-->
                 <div class="d-flex flex-column h-100">
-                    <div class="row overflow-auto" style="height: 85vh;">
+                    <div class="overflow-auto" style="height: 85vh; display:flex; flex-direction:column-reverse;">
                         <!--Sent Messages-->
                         {% for message in messages %}
                             {% if message.user == user %}

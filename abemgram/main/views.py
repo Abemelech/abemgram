@@ -24,7 +24,7 @@ def chat(response, number):
     username = Customer.objects.get(phone = number).user
     chat_user = User.objects.get(username = username)
 
-    messages = Message.objects.filter(Q(user=response.user, sent_to=chat_user) | Q(user=chat_user, sent_to=response.user)).order_by("timestamp")
+    messages = Message.objects.filter(Q(user=response.user, sent_to=chat_user) | Q(user=chat_user, sent_to=response.user)).order_by("-timestamp")
 
     # Similar Search function in index
     if response.method == "POST":
