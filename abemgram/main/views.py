@@ -28,8 +28,7 @@ def chat(response, number):
 
     # Similar Search function in index
     if response.method == "POST":
-        print(response.POST)
-        
+
         search = response.POST.get('search_number')
         chats = Customer.objects.filter(phone = search)
         if response.POST.get("message_box"):
